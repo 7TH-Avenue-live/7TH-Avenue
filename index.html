@@ -3,33 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Checklist - Espaço LIVE OBSERVATORY</title>
+  <title>LIVE OBSERVATORY</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 2rem;
+      margin: 0;
       background-color: #f8f8f8;
+    }
+    header {
+      background-color: #343a40;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      background-color: #e9ecef;
+      padding: 0.5rem;
+    }
+    nav button {
+      background-color: transparent;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    nav button:hover {
+      text-decoration: underline;
     }
     .card {
       background-color: white;
       padding: 2rem;
       border-radius: 12px;
-      max-width: 600px;
-      margin: auto;
+      max-width: 700px;
+      margin: 2rem auto;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h2, h1 {
-      text-align: center;
-      color: #333;
-    }
-    label {
-      display: block;
-      margin-bottom: 10px;
     }
     .hidden {
       display: none;
     }
-    button {
+    button.submit-btn {
       margin-top: 20px;
       padding: 10px 15px;
       background-color: #28a745;
@@ -38,112 +52,124 @@
       color: white;
       cursor: pointer;
     }
-    button:hover {
+    button.submit-btn:hover {
       background-color: #218838;
     }
-    input[type="text"], input[type="date"], input[type="email"], textarea {
+    input[type="text"], input[type="date"], textarea {
       width: 100%;
       padding: 8px;
       margin-top: 5px;
       margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
     }
-    .success-message {
-      color: green;
-      font-weight: bold;
-      text-align: center;
-      margin-top: 20px;
+    label {
+      display: block;
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
 
-  <!-- PRIMEIRA TELA -->
-  <div class="card" id="termos">
-    <h1>Espaço: <strong>LIVE OBSERVATORY</strong></h1>
+  <header>
+    <h1>Espaço LIVE OBSERVATORY</h1>
+  </header>
+
+  <nav>
+    <button onclick="mostrarAba('checklist')">Checklist</button>
+    <button onclick="mostrarAba('regras')">Regras de Uso</button>
+    <button onclick="mostrarAba('contato')">Contato</button>
+  </nav>
+
+  <!-- ABA CHECKLIST -->
+  <div class="card" id="checklist">
     <p><em>(Capacidade para 30 pessoas)</em></p>
-
     <p>Na qualidade de condômino(a) do <strong>Condomínio 7th Avenue Live & Work</strong>, comprometo-me e responsabilizo-me pelo seguinte:</p>
-
     <ol>
-      <li>Utilizar o espaço, meus familiares e convidados de forma a <strong>não perturbar a boa ordem e o sossego</strong> dos demais moradores;</li>
-      <li>Responsabilizar-me por <strong>qualquer dano ao mobiliário</strong>, adornos, aparelhos, cortinas, tapetes e demais objetos do salão durante sua utilização;</li>
-      <li>Cumprir integralmente o <strong>Regulamento Interno</strong> do condomínio referente ao uso do espaço;</li>
-      <li>Declaro que recebi o espaço em <strong>plena ordem</strong> (elétrica, hidráulica, pintura, móveis e objetos), com exceção dos itens abaixo assinalados:</li>
+      <li>Utilizar o espaço sem perturbar os demais moradores;</li>
+      <li>Responsabilizar-me por danos ao mobiliário e objetos;</li>
+      <li>Cumprir o Regulamento Interno do condomínio;</li>
+      <li>Declaro que recebi o espaço em plena ordem, salvo exceções abaixo:</li>
     </ol>
 
-    <!-- CAMPO DE EXCEÇÕES -->
     <label for="excecoesInput">📝 Itens com problemas ou exceções:</label>
     <textarea id="excecoesInput" rows="4" placeholder="Descreva aqui, se houver..."></textarea>
 
-    <!-- ACEITE DAS REGRAS -->
     <label>
       <input type="checkbox" id="agreeCheckbox"> Li e concordo com as regras
     </label>
-    <button onclick="mostrarFormulario()">Continuar</button>
+    <button class="submit-btn" onclick="mostrarFormulario()">Continuar</button>
+
+    <!-- FORMULÁRIO FINAL -->
+    <div class="hidden" id="formulario">
+      <h2>Checklist Final</h2>
+      <form action="https://formsubmit.co/adm7th@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Checklist - Espaço LIVE OBSERVATORY">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="excecoes" id="excecoesHidden">
+
+        <label>Nome do morador:
+          <input type="text" name="morador" required>
+        </label>
+        <label>Número do APTO:
+          <input type="text" name="apto" required>
+        </label>
+        <label>Data da reserva:
+          <input type="date" name="data" required>
+        </label>
+
+        <label><input type="checkbox" name="Mesas"> Mesas em ordem</label>
+        <label><input type="checkbox" name="Cadeiras"> Cadeiras em ordem</label>
+        <label><input type="checkbox" name="Banheiro"> Banheiros limpos</label>
+        <label><input type="checkbox" name="Piso"> Piso limpo</label>
+        <label><input type="checkbox" name="Lixo"> Lixeiras com saco</label>
+        <label><input type="checkbox" name="Espelhos"> Espelhos limpos</label>
+
+        <button type="submit" class="submit-btn">Enviar</button>
+      </form>
+    </div>
   </div>
 
-  <!-- FORMULÁRIO REAL PARA ENVIO -->
-  <div class="card hidden" id="formulario">
-    <h2>Checklist - Espaço LIVE OBSERVATORY</h2>
-    <form id="checklistForm" action="https://formsubmit.co/adm7th@gmail.com" method="POST" onsubmit="return handleSubmit(event)">
-      <input type="hidden" name="_subject" value="Checklist - Espaço LIVE OBSERVATORY">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://www.google.com"> <!-- opcional redirecionamento -->
-      <input type="hidden" name="excecoes" id="excecoesHidden">
+  <!-- ABA REGRAS -->
+  <div class="card hidden" id="regras">
+    <h2>Regras de Uso do Espaço</h2>
+    <ul>
+      <li>Horário permitido: 08h às 22h.</li>
+      <li>Não é permitido som alto.</li>
+      <li>É proibido fumar no interior do espaço.</li>
+      <li>Ao término do uso, o espaço deve ser devolvido limpo.</li>
+      <li>O morador é responsável pelos convidados.</li>
+      <li>Em caso de danos, o morador será responsabilizado.</li>
+    </ul>
+  </div>
 
-      <!-- DADOS DO MORADOR -->
-      <label>Nome do morador:
-        <input type="text" name="morador" required aria-label="Nome do morador">
-      </label>
-      <label>Número do APTO:
-        <input type="text" name="apto" required aria-label="Número do apartamento">
-      </label>
-      <label>Data da reserva:
-        <input type="date" name="data" required aria-label="Data da reserva">
-      </label>
-      <label>E-mail para contato (opcional):
-        <input type="email" name="email" placeholder="seu@email.com" aria-label="E-mail para contato">
-      </label>
-
-      <!-- CHECKLIST DE ITENS -->
-      <label><input type="checkbox" name="Mesas"> Mesas em ordem</label>
-      <label><input type="checkbox" name="Cadeiras"> Cadeiras em ordem</label>
-      <label><input type="checkbox" name="Banheiro"> Banheiros limpos</label>
-      <label><input type="checkbox" name="Piso"> Piso limpo</label>
-      <label><input type="checkbox" name="Lixo"> Lixeiras com saco</label>
-      <label><input type="checkbox" name="Espelhos"> Espelhos limpos</label>
-
-      <button id="enviarBtn" type="submit">Enviar</button>
-      <p class="success-message hidden" id="successMsg">Enviado com sucesso! Verifique seu e-mail.</p>
-    </form>
+  <!-- ABA CONTATO -->
+  <div class="card hidden" id="contato">
+    <h2>Contato</h2>
+    <p>Para dúvidas, reclamações ou sugestões, entre em contato conosco:</p>
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:adm7th@gmail.com">adm7th@gmail.com</a></li>
+      <li><strong>WhatsApp:</strong> (XX) XXXXX-XXXX</li>
+      <li><strong>Portaria:</strong> Ramal 101</li>
+    </ul>
   </div>
 
   <script>
+    function mostrarAba(abaId) {
+      const abas = ['checklist', 'regras', 'contato'];
+      abas.forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+      document.getElementById(abaId).classList.remove('hidden');
+    }
+
     function mostrarFormulario() {
       const checkbox = document.getElementById('agreeCheckbox');
       if (checkbox.checked) {
         const excecoes = document.getElementById('excecoesInput').value;
         document.getElementById('excecoesHidden').value = excecoes;
-        document.getElementById('termos').classList.add('hidden');
         document.getElementById('formulario').classList.remove('hidden');
       } else {
         alert('Você deve aceitar as regras para continuar.');
       }
-    }
-
-    function handleSubmit(event) {
-      const btn = document.getElementById('enviarBtn');
-      btn.disabled = true;
-      btn.textContent = "Enviando...";
-
-      setTimeout(() => {
-        document.getElementById('successMsg').classList.remove('hidden');
-        btn.textContent = "Enviado";
-      }, 500); // Apenas visual, para simular envio
-
-      return true; // permitir envio
     }
   </script>
 
