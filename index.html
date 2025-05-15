@@ -14,32 +14,32 @@
       <button onclick="mostrarAba('checklist')">Checklist</button>
     </div>
 
-    <form action="https://formsubmit.co/adm7th@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="Checklist salão preenchido!">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://condominioteste.site/sucesso.html">
-      <input type="hidden" name="excecoes" id="excecoesHidden" />
-
-      <!-- ABA: Regras -->
-      <div id="regras" class="card">
-        <h2>Regras do Salão de Festas</h2>
-        <ul>
-          <li>Horário de uso: 08h às 22h</li>
-          <li>Proibido uso de som alto</li>
-          <li>Não é permitido animais</li>
-          <li>Limpeza é responsabilidade do morador</li>
-          <li>Danos ao patrimônio serão cobrados</li>
-        </ul>
-        <div class="form-group">
-          <input type="checkbox" id="agreeCheckbox" required>
-          <label for="agreeCheckbox">Li e concordo com as regras</label>
-        </div>
-        <button class="submit-btn" type="button" onclick="mostrarFormulario()">Continuar</button>
+    <!-- ABA: Regras -->
+    <div id="regras" class="card">
+      <h2>Regras do Salão de Festas</h2>
+      <ul>
+        <li>Horário de uso: 08h às 22h</li>
+        <li>Proibido uso de som alto</li>
+        <li>Não é permitido animais</li>
+        <li>Limpeza é responsabilidade do morador</li>
+        <li>Danos ao patrimônio serão cobrados</li>
+      </ul>
+      <div class="form-group">
+        <input type="checkbox" id="agreeCheckbox" required>
+        <label for="agreeCheckbox">Li e concordo com as regras</label>
       </div>
+      <button class="submit-btn" onclick="mostrarFormulario()">Continuar</button>
+    </div>
 
-      <!-- ABA: Checklist -->
-      <div id="checklist" class="card hidden">
-        <h2>Checklist</h2>
+    <!-- ABA: Checklist -->
+    <div id="checklist" class="card hidden">
+      <h2>Checklist</h2>
+      <form action="https://formsubmit.co/adm7th@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Checklist salão preenchido!">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://condominioteste.site/sucesso.html">
+        <input type="hidden" name="excecoes" id="excecoesHidden" />
+
         <table>
           <thead>
             <tr>
@@ -62,33 +62,34 @@
           </tbody>
         </table>
 
-        <label for="excecoesInput">Observações (opcional):</label>
-        <textarea id="excecoesInput" rows="4" placeholder="Descreva qualquer exceção ou observação relevante."></textarea>
+        <label for="excecoesTextarea">Observações (opcional):</label>
+        <textarea id="excecoesTextarea" rows="4" placeholder="Descreva qualquer exceção ou observação relevante."></textarea>
 
-        <button type="submit">Enviar checklist por e-mail</button>
-      </div>
-    </form>
+        <br><br>
+        <button type="submit" onclick="preencherExcecoes()">Enviar checklist por e-mail</button>
+      </form>
+    </div>
   </div>
 
   <script>
     function mostrarAba(abaId) {
-      const abas = document.querySelectorAll('.card');
-      abas.forEach(aba => aba.classList.add('hidden'));
-      document.getElementById(abaId).classList.remove('hidden');
+      document.getElementById("regras").classList.add("hidden");
+      document.getElementById("checklist").classList.add("hidden");
+      document.getElementById(abaId).classList.remove("hidden");
     }
 
     function mostrarFormulario() {
       const checkbox = document.getElementById('agreeCheckbox');
       if (!checkbox.checked) {
-        alert('Você precisa concordar com as regras antes de continuar.');
+        alert("Você precisa concordar com as regras antes de continuar.");
         return;
       }
-
-      // Preenche campo oculto com o texto da observação
-      const excecoesText = document.getElementById('excecoesInput').value;
-      document.getElementById('excecoesHidden').value = excecoesText;
-
       mostrarAba('checklist');
+    }
+
+    function preencherExcecoes() {
+      const observacao = document.getElementById("excecoesTextarea").value;
+      document.getElementById("excecoesHidden").value = observacao;
     }
   </script>
 </body>
