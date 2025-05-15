@@ -128,34 +128,33 @@
     </div>
   </div>
 
-  <!-- ABA regimento -->
-  <div class="card hidden" id="regimento">
-    <h2>Regimento interno</h2>
+  <!-- ABA REGRAS -->
+  <div class="card hidden" id="regras">
+    <h2>Regras de Uso do Espaço</h2>
     <ul>
-      <li>Art. 53 - A Administração se reserva o direito de suspender o uso dos Espaços de Eventos aos moradores e visitantes que desrespeitarem as normas, ou que não apresentem postura adequada. 
-      Parágrafo único: Fica terminantemente proibido o ingresso nas piscinas de convidados que estiverem participando de reuniões ou festividades nos Espaços de Eventos. 
-      </li>
-      <li>Art. 55 - É proibido furar paredes, teto, gesso, etc., bem como fixar grampos, pregos, percevejos e similares ou colar adesivos para montagem de arranjos comemorativos.</li>
-      <li>Art. 57 - Após o uso, e antes da devolução dos referidos espaços, deverá o usuário retirar todo e qualquer material a eles pertencentes não ficando o condomínio responsável por nenhum material deixado no ambiente. 
-      Parágrafo único: Deverá também deixar o lixo devidamente acondicionado e separado colaborando com a limpeza e higiene do local. 
-      </li>
-      <li>Art. 58 – O condômino que alugar os Espaços de Eventos deverá fornecer para a portaria a lista de convidados, com 24 horas de antecedência.</li>
-      <li>Art. 60 – Fica terminantemente proibida a retirada, transferência, bem como a utilização dos materiais pertencentes aos Espaços de Eventos, tais como pratos, copos, mesas, cadeiras, móveis, equipamentos e utensílios etc., para serem utilizados em Espaço de Eventos diverso ou em qualquer outro local.</li>
-      <li>Art. 61 – O horário para utilização do Live Gourmet I, Live Parties I, Live Parties II, Live Observatory, será das 10h00min às 03h00min (três horas da manhã do dia seguinte). 
-      Parágrafo Primeiro: Quaisquer ruídos produzidos devem cessar a partir das 22h00, sendo permitida a permanência no local até as 03h00 (três horas da manhã), sendo que festividades as quais sejam utilizados aparelhos sonoros os volumes dos mesmos não poderão prejudicar o sossego dos condôminos. 
-      Parágrafo Segundo: Após as 00h00min (meia-noite), todas as atividades nestes Espaços de Eventos devem se restringir ao interior dos ambientes, visando reduzir o ruído na área comum do Condomínio. 
-      </li>
+      <li>Horário permitido: 08h às 22h.</li>
+      <li>Não é permitido som alto.</li>
+      <li>É proibido fumar no interior do espaço.</li>
+      <li>Ao término do uso, o espaço deve ser devolvido limpo.</li>
+      <li>O morador é responsável pelos convidados.</li>
+      <li>Em caso de danos, o morador será responsabilizado.</li>
+    </ul>
+  </div>
+
+  <!-- ABA CONTATO -->
+  <div class="card hidden" id="contato">
+    <h2>Contato</h2>
     <p>Para dúvidas, reclamações ou sugestões, entre em contato conosco:</p>
     <ul>
       <li><strong>Email:</strong> <a href="mailto:adm7th@gmail.com">adm7th@gmail.com</a></li>
-      <li><strong>WhatsApp:</strong> (41)  99920-4863</li>
-      <li><strong>Portaria:</strong> Ramal 804</li>
+      <li><strong>WhatsApp:</strong> (XX)  99920-4863</li>
+      <li><strong>Portaria:</strong> Ramal 101</li>
     </ul>
   </div>
 
   <script>
     function mostrarAba(abaId) {
-      const abas = ['checklist', 'regimento interno', 'contato'];
+      const abas = ['checklist', 'regras', 'contato'];
       abas.forEach(id => {
         document.getElementById(id).classList.add('hidden');
       });
