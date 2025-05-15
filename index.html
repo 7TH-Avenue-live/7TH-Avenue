@@ -2,52 +2,135 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Reserva do Salão de Festas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LIVE OBSERVATORY</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 20px;
+      margin: 0;
+      background-color: #f8f8f8;
     }
-    .aba {
+    header {
+      background-color: #343a40;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      background-color: #e9ecef;
+      padding: 0.5rem;
+    }
+    nav button {
+      background-color: transparent;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    nav button:hover {
+      text-decoration: underline;
+    }
+    .card {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 700px;
+      margin: 2rem auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .hidden {
       display: none;
     }
-    .visivel {
+    button.submit-btn {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #28a745;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+    }
+    button.submit-btn:hover {
+      background-color: #218838;
+    }
+    input[type="text"], input[type="date"], textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+    }
+    label {
       display: block;
-    }
-    .botoes {
-      margin-bottom: 20px;
-    }
-    button {
-      margin-right: 10px;
-      padding: 10px;
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Reserva do Salão de Festas</h1>
+  <header>
+    <h1>Espaço LIVE OBSERVATORY</h1>
+  </header>
 
-  <div class="botoes">
+  <nav>
     <button onclick="mostrarAba('checklist')">Checklist</button>
-    <button onclick="mostrarAba('regimento')">Regras de Uso</button>
-    <button onclick="mostrarAba('confirmar')">Confirmar e Enviar</button>
+    <button onclick="mostrarAba('regras')">Regras de Uso</button>
+    <button onclick="mostrarAba('contato')">Contato</button>
+  </nav>
+
+  <!-- ABA CHECKLIST -->
+  <div class="card" id="checklist">
+    <p><em>(Capacidade para 30 pessoas)</em></p>
+    <p>Na qualidade de condômino(a) do <strong>Condomínio 7th Avenue Live & Work</strong>, comprometo-me e responsabilizo-me pelo seguinte:</p>
+    <ol>
+      <li>Utilizar o espaço sem perturbar os demais moradores;</li>
+      <li>Responsabilizar-me por danos ao mobiliário e objetos;</li>
+      <li>Cumprir o Regulamento Interno do condomínio;</li>
+      <li>Declaro que recebi o espaço em plena ordem, salvo exceções abaixo:</li>
+    </ol>
+
+    <label for="excecoesInput">📝 Itens com problemas ou exceções:</label>
+    <textarea id="excecoesInput" rows="4" placeholder="Descreva aqui, se houver..."></textarea>
+
+    <label>
+      <input type="checkbox" id="agreeCheckbox"> Li e concordo com as regras
+    </label>
+    <button class="submit-btn" onclick="mostrarFormulario()">Continuar</button>
+
+    <!-- FORMULÁRIO FINAL -->
+    <div class="hidden" id="formulario">
+      <h2>Checklist Final</h2>
+      <form action="https://formsubmit.co/adm7th@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Checklist - Espaço LIVE OBSERVATORY">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="excecoes" id="excecoesHidden">
+
+        <label>Nome do morador:
+          <input type="text" name="morador" required>
+        </label>
+        <label>Número do APTO:
+          <input type="text" name="apto" required>
+        </label>
+        <label>Data da reserva:
+          <input type="date" name="data" required>
+        </label>
+
+        <label><input type="checkbox" name="Mesas"> Mesas em ordem</label>
+        <label><input type="checkbox" name="Cadeiras"> Cadeiras em ordem</label>
+        <label><input type="checkbox" name="Banheiro"> Banheiros limpos</label>
+        <label><input type="checkbox" name="Piso"> Piso limpo</label>
+        <label><input type="checkbox" name="Lixo"> Lixeiras com saco</label>
+        <label><input type="checkbox" name="Espelhos"> Espelhos limpos</label>
+
+        <button type="submit" class="submit-btn">Enviar</button>
+      </form>
+    </div>
   </div>
 
-  <!-- Aba 1: Checklist -->
-  <div id="checklist" class="aba visivel">
-    <h2>Checklist de Itens</h2>
-    <form id="formChecklist">
-      <label><input type="checkbox" name="itens" value="Pratos"> Pratos</label><br>
-      <label><input type="checkbox" name="itens" value="Copos"> Copos</label><br>
-      <label><input type="checkbox" name="itens" value="Talheres"> Talheres</label><br>
-      <label><input type="checkbox" name="itens" value="Mesas"> Mesas</label><br>
-      <label><input type="checkbox" name="itens" value="Cadeiras"> Cadeiras</label><br>
-    </form>
-  </div>
-
-  <!-- Aba 2: Regras de Uso -->
-  <div id="regimento" class="aba">
-    <h2>Regimento Interno</h2>
+  <!-- ABA regimento -->
+  <div class="card hidden" id="regimento">
+    <h2>Regimento interno</h2>
     <ul>
       <li>Art. 53 - A Administração se reserva o direito de suspender o uso dos Espaços de Eventos aos moradores e visitantes que desrespeitarem as normas, ou que não apresentem postura adequada. <br>
       <strong>Parágrafo único:</strong> Fica terminantemente proibido o ingresso nas piscinas de convidados que estiverem participando de reuniões ou festividades nos Espaços de Eventos.</li>
@@ -75,41 +158,43 @@
       <strong>Parágrafo Único:</strong> É proibido fumar em áreas comuns, conforme Lei Municipal 13254/2009.</li>
 
       <li><strong>Via do condômino</strong></li>
+	  
     </ul>
   </div>
 
-  <!-- Aba 3: Confirmar e Enviar -->
-  <div id="confirmar" class="aba">
-    <h2>Confirmação</h2>
-    <p>Confirme que você leu e concorda com as regras:</p>
-    <label>
-      <input type="checkbox" id="aceitaRegras"> Li e aceito as regras de uso do salão de festas.
-    </label><br><br>
-    <label>
-      Seu nome: <input type="text" id="nomeUsuario">
-    </label><br><br>
-    <button onclick="enviarChecklist()">Enviar por e-mail</button>
+  <!-- ABA CONTATO -->
+  <div class="card hidden" id="contato">
+    <h2>Contato</h2>
+    <p>Para dúvidas, reclamações ou sugestões, entre em contato conosco:</p>
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:adm7th@gmail.com">adm7th@gmail.com</a></li>
+      <li><strong>WhatsApp:</strong> (41)  99920-4863</li>
+      <li><strong>Portaria:</strong> Ramal 804</li>
+    </ul>
   </div>
 
   <script>
-    function mostrarAba(id) {
-      document.querySelectorAll('.aba').forEach(aba => aba.classList.remove('visivel'));
-      document.getElementById(id).classList.add('visivel');
+    function mostrarAba(abaId) {
+      const abas = ['checklist', 'regimento interno', 'contato'];
+      abas.forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+      document.getElementById(abaId).classList.remove('hidden');
     }
 
-    function enviarChecklist() {
-      const aceita = document.getElementById('aceitaRegras').checked;
-      const nome = document.getElementById('nomeUsuario').value.trim();
-      if (!aceita || nome === "") {
-        alert("Você deve aceitar as regras e informar seu nome para continuar.");
-        return;
+    function mostrarFormulario() {
+      const checkbox = document.getElementById('agreeCheckbox');
+      if (checkbox.checked) {
+        const excecoes = document.getElementById('excecoesInput').value;
+        document.getElementById('excecoesHidden').value = excecoes;
+        document.getElementById('formulario').classList.remove('hidden');
+      } else {
+        alert('Você deve aceitar as regras para continuar.');
       }
-
-      const itensMarcados = Array.from(document.querySelectorAll('input[name="itens"]:checked')).map(el => el.value);
-      const corpoEmail = `Nome do usuário: ${nome}\n\nChecklist de Itens Marcados:\n${itensMarcados.join('\n')}\n\nRegras foram aceitas: SIM`;
-
-      window.location.href = `mailto:seuemail@exemplo.com?subject=Checklist do Salão de Festas&body=${encodeURIComponent(corpoEmail)}`;
     }
+
+    // Mostra a aba "Checklist" por padrão ao carregar a página
+    window.onload = () => mostrarAba('checklist');
   </script>
 
 </body>
