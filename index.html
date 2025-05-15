@@ -82,7 +82,7 @@
   <!-- ABA CHECKLIST -->
   <div class="card" id="checklist">
     <h2>Checklist - LIVE OBSERVATORY</h2>
-    <form action="https://formsubmit.co/adm7th@gmail.com" method="POST">
+    <form action="https://formsubmit.co/adm7th@gmail.com" method="POST" onsubmit="return prepararEnvio()">
       <input type="hidden" name="_subject" value="Checklist - Espaço LIVE OBSERVATORY">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="excecoes na qualidade do ambiente" id="excecoesHidden">
@@ -97,7 +97,7 @@
     </ol>
 
     <label for="excecoesInput1">📝 Itens com problemas ou exceções:</label>
-    <textarea id="excecoesInput1" name="excecoes na qualidade do ambiente" rows="4" placeholder="Descreva aqui, se houver..."></textarea>
+    <textarea id="excecoesInput" name="excecoes na qualidade do ambiente" rows="4" placeholder="Descreva aqui, se houver..."></textarea>
 
     <label>
       <input type="checkbox" id="agreeCheckbox"> Li e concordo com as regras
@@ -264,7 +264,12 @@
         alert('Você deve aceitar as regras para continuar.');
       }
     }
-
+    function prepararEnvio() {
+      const excecoes = document.getElementById('excecoesInput').value;
+      document.getElementById('excecoesHidden').value = excecoes;
+      return true;
+}
+   
     // Mostra a aba "Checklist" por padrão ao carregar a página
     window.onload = () => mostrarAba('checklist');
   </script>
