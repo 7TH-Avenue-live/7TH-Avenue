@@ -81,12 +81,13 @@
 
   <!-- ABA CHECKLIST -->
   <div class="card" id="checklist">
-    <h2>Checklist - LIVE OBSERVATORY</h2>
-    <form action="https://formsubmit.co/adm7th@gmail.com" method="POST" onsubmit="return prepararEnvio()">
-      <input type="hidden" name="_subject" value="Checklist - Espaço LIVE OBSERVATORY">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="excecoes na qualidade do ambiente" id="excecoesHidden">
-       
+  <h2>Checklist - LIVE OBSERVATORY</h2>
+  <form action="https://formsubmit.co/adm7th@gmail.com" method="POST" onsubmit="return prepararEnvio()">
+    <input type="hidden" name="_subject" value="Checklist - Espaço LIVE OBSERVATORY">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://7th-avenue-live.github.io/7TH-Avenue/">
+    <input type="hidden" name="excecoes na qualidade do ambiente" id="excecoesHidden">
+
     <p><em>(Capacidade para 30 pessoas)</em></p>
     <p>Na qualidade de condômino(a) do <strong>Condomínio 7th Avenue Live & Work</strong>, comprometo-me e responsabilizo-me pelo seguinte:</p>
     <ol>
@@ -96,46 +97,38 @@
       <li>Declaro que recebi o espaço em plena ordem, salvo exceções abaixo:</li>
     </ol>
 
-    <label for="excecoesInput1">📝 Itens com problemas ou exceções:</label>
-    <textarea id="excecoesInput" name="excecoes na qualidade do ambiente" rows="4" placeholder="Descreva aqui, se houver..."></textarea>
+    <label for="excecoesInput">📝 Itens com problemas ou exceções:</label>
+    <textarea id="excecoesInput" rows="4" placeholder="Descreva aqui, se houver..."></textarea>
 
     <label>
       <input type="checkbox" id="agreeCheckbox"> Li e concordo com as regras
     </label>
-    <button class="submit-btn" onclick="mostrarFormulario()">Continuar</button>
 
-      <form action="https://formsubmit.co/adm7th@gmail.com" method="POST">
-      
-       <!-- Checklist - LIVE OBSERVATORY -->
+    <button type="button" class="submit-btn" onclick="mostrarFormulario()">Continuar</button>
+
+    <!-- FORMULÁRIO ESCONDIDO QUE APARECE APÓS O CONTINUAR -->
     <div class="hidden" id="formulario">
       <h2>Checklist - LIVE OBSERVATORY</h2>
-      <form action="https://formsubmit.co/adm7th@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="Checklist - Espaço LIVE OBSERVATORY">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="excecoes na qualidade do ambiente" id="excecoesHidden">
 
-        <label>Nome do morador:
-          <input type="text" name="morador" required>
-        </label>
-        <label>Número do APTO:
-          <input type="text" name="apto" required>
-        </label>
-        <label>Data da reserva:
-          <input type="date" name="data" required>
-        </label>
+      <label>Nome do morador:
+        <input type="text" name="morador" required>
+      </label>
+      <label>Número do APTO:
+        <input type="text" name="apto" required>
+      </label>
+      <label>Data da reserva:
+        <input type="date" name="data" required>
+      </label>
 
-        <label><input type="checkbox" name="Mesas"> Mesas em ordem</label>
-        <label><input type="checkbox" name="Cadeiras"> Cadeiras em ordem</label>
-        <label><input type="checkbox" name="Banheiro"> Banheiros limpos</label>
-        <label><input type="checkbox" name="Piso"> Piso limpo</label>
-        <label><input type="checkbox" name="Lixo"> Lixeiras com saco</label>
-        <label><input type="checkbox" name="Espelhos"> Espelhos limpos</label>
+      <label><input type="checkbox" name="Mesas"> Mesas em ordem</label>
+      <label><input type="checkbox" name="Cadeiras"> Cadeiras em ordem</label>
+      <label><input type="checkbox" name="Banheiro"> Banheiros limpos</label>
+      <label><input type="checkbox" name="Piso"> Piso limpo</label>
+      <label><input type="checkbox" name="Lixo"> Lixeiras com saco</label>
+      <label><input type="checkbox" name="Espelhos"> Espelhos limpos</label>
 
-        <label for="excecoesInput1">📝 Itens com problemas ou exceções:</label>
-        <textarea id="excecoesInput1" name="excecoes do ambiente" rows="4" placeholder="Descreva aqui, se houver..."></textarea>
-
-
-        <form action="https://formsubmit.co/adm7th@gmail.com" method="POST">
+      <label for="excecoesInput2">📝 Itens com problemas ou exceções:</label>
+      <textarea id="excecoesInput2" name="excecoes do ambiente" rows="4" placeholder="Descreva aqui, se houver..."></textarea>
   <h2>Checklist - Final</h2>
   <p><strong>Capacidade para 30 pessoas</strong></p>
 
