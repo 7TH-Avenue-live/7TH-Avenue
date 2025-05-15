@@ -41,11 +41,19 @@
     button:hover {
       background-color: #218838;
     }
-    input[type="text"], input[type="date"], textarea {
+    input[type="text"], input[type="date"], input[type="email"], textarea {
       width: 100%;
       padding: 8px;
       margin-top: 5px;
       margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .success-message {
+      color: green;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -65,7 +73,7 @@
       <li>Declaro que recebi o espaço em <strong>plena ordem</strong> (elétrica, hidráulica, pintura, móveis e objetos), com exceção dos itens abaixo assinalados:</li>
     </ol>
 
-    <!-- CAMPO DE EXCEÇÕES (VISÍVEL) -->
+    <!-- CAMPO DE EXCEÇÕES -->
     <label for="excecoesInput">📝 Itens com problemas ou exceções:</label>
     <textarea id="excecoesInput" rows="4" placeholder="Descreva aqui, se houver..."></textarea>
 
@@ -79,19 +87,24 @@
   <!-- FORMULÁRIO REAL PARA ENVIO -->
   <div class="card hidden" id="formulario">
     <h2>Checklist - Espaço LIVE OBSERVATORY</h2>
-    <form action="https://formsubmit.co/adm7th@gmail.com" method="POST">
+    <form id="checklistForm" action="https://formsubmit.co/adm7th@gmail.com" method="POST" onsubmit="return handleSubmit(event)">
       <input type="hidden" name="_subject" value="Checklist - Espaço LIVE OBSERVATORY">
       <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://www.google.com"> <!-- opcional redirecionamento -->
+      <input type="hidden" name="excecoes" id="excecoesHidden">
 
       <!-- DADOS DO MORADOR -->
       <label>Nome do morador:
-        <input type="text" name="morador" required>
+        <input type="text" name="morador" required aria-label="Nome do morador">
       </label>
       <label>Número do APTO:
-        <input type="text" name="apto" required>
+        <input type="text" name="apto" required aria-label="Número do apartamento">
       </label>
       <label>Data da reserva:
-        <input type="date" name="data" required>
+        <input type="date" name="data" required aria-label="Data da reserva">
+      </label>
+      <label>E-mail para contato (opcional):
+        <input type="email" name="email" placeholder="seu@email.com" aria-label="E-mail para contato">
       </label>
 
       <!-- CHECKLIST DE ITENS -->
@@ -102,10 +115,8 @@
       <label><input type="checkbox" name="Lixo"> Lixeiras com saco</label>
       <label><input type="checkbox" name="Espelhos"> Espelhos limpos</label>
 
-      <!-- CAMPO ESCONDIDO COM AS EXCEÇÕES -->
-      <input type="hidden" name="excecoes" id="excecoesHidden">
-
-      <button type="submit">Enviar</button>
+      <button id="enviarBtn" type="submit">Enviar</button>
+      <p class="success-message hidden" id="successMsg">Enviado com sucesso! Verifique seu e-mail.</p>
     </form>
   </div>
 
@@ -113,16 +124,26 @@
     function mostrarFormulario() {
       const checkbox = document.getElementById('agreeCheckbox');
       if (checkbox.checked) {
-        // Pega o texto digitado na primeira etapa
         const excecoes = document.getElementById('excecoesInput').value;
         document.getElementById('excecoesHidden').value = excecoes;
-
-        // Mostra o formulário e esconde os termos
         document.getElementById('termos').classList.add('hidden');
         document.getElementById('formulario').classList.remove('hidden');
       } else {
         alert('Você deve aceitar as regras para continuar.');
       }
+    }
+
+    function handleSubmit(event) {
+      const btn = document.getElementById('enviarBtn');
+      btn.disabled = true;
+      btn.textContent = "Enviando...";
+
+      setTimeout(() => {
+        document.getElementById('successMsg').classList.remove('hidden');
+        btn.textContent = "Enviado";
+      }, 500); // Apenas visual, para simular envio
+
+      return true; // permitir envio
     }
   </script>
 
