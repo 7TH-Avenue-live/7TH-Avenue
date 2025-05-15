@@ -50,7 +50,9 @@
   </style>
 </head>
 <body>
-  <div class="card">
+
+  <!-- PRIMEIRA TELA -->
+  <div class="card" id="termos">
     <h1>Espaço: <strong>LIVE OBSERVATORY</strong></h1>
     <p><em>(Capacidade para 30 pessoas)</em></p>
 
@@ -63,41 +65,46 @@
       <li>Declaro que recebi o espaço em <strong>plena ordem</strong> (elétrica, hidráulica, pintura, móveis e objetos), com exceção dos itens abaixo assinalados:</li>
     </ol>
 
-    <label for="excecoes">📝 Itens com problemas ou exceções:</label>
-    <textarea id="excecoes" name="excecoes" rows="4" placeholder="Descreva aqui, se houver..."></textarea>
+    <!-- CAMPO DE EXCEÇÕES (VISÍVEL) -->
+    <label for="excecoesInput">📝 Itens com problemas ou exceções:</label>
+    <textarea id="excecoesInput" rows="4" placeholder="Descreva aqui, se houver..."></textarea>
 
+    <!-- ACEITE DAS REGRAS -->
     <label>
       <input type="checkbox" id="agreeCheckbox"> Li e concordo com as regras
     </label>
     <button onclick="mostrarFormulario()">Continuar</button>
   </div>
 
+  <!-- FORMULÁRIO REAL PARA ENVIO -->
   <div class="card hidden" id="formulario">
     <h2>Checklist - Espaço LIVE OBSERVATORY</h2>
     <form action="https://formsubmit.co/adm7th@gmail.com" method="POST">
       <input type="hidden" name="_subject" value="Checklist - Espaço LIVE OBSERVATORY">
       <input type="hidden" name="_captcha" value="false">
 
+      <!-- DADOS DO MORADOR -->
       <label>Nome do morador:
-        <input type="text" name="nome" required>
+        <input type="text" name="morador" required>
       </label>
-	  <label>Numero do APTO:
-        <input type="text" name="nome" required>
+      <label>Número do APTO:
+        <input type="text" name="apto" required>
       </label>
       <label>Data da reserva:
         <input type="date" name="data" required>
       </label>
 
+      <!-- CHECKLIST DE ITENS -->
       <label><input type="checkbox" name="Mesas"> Mesas em ordem</label>
       <label><input type="checkbox" name="Cadeiras"> Cadeiras em ordem</label>
       <label><input type="checkbox" name="Banheiro"> Banheiros limpos</label>
       <label><input type="checkbox" name="Piso"> Piso limpo</label>
       <label><input type="checkbox" name="Lixo"> Lixeiras com saco</label>
-      <label><input type="checkbox" name="Lixo"> Espelhos limpos</label>
-	  
-	<label for="excecoes">📝 Descreva a baixo os itens que não estão de acordo:</label>
-    <textarea id="excecoes" name="excecoes" rows="4" placeholder="Descreva aqui, se houver..."></textarea>
-	
+      <label><input type="checkbox" name="Espelhos"> Espelhos limpos</label>
+
+      <!-- CAMPO ESCONDIDO COM AS EXCEÇÕES -->
+      <input type="hidden" name="excecoes" id="excecoesHidden">
+
       <button type="submit">Enviar</button>
     </form>
   </div>
@@ -106,12 +113,18 @@
     function mostrarFormulario() {
       const checkbox = document.getElementById('agreeCheckbox');
       if (checkbox.checked) {
-        document.querySelector('.card').classList.add('hidden');
+        // Pega o texto digitado na primeira etapa
+        const excecoes = document.getElementById('excecoesInput').value;
+        document.getElementById('excecoesHidden').value = excecoes;
+
+        // Mostra o formulário e esconde os termos
+        document.getElementById('termos').classList.add('hidden');
         document.getElementById('formulario').classList.remove('hidden');
       } else {
         alert('Você deve aceitar as regras para continuar.');
       }
     }
   </script>
+
 </body>
 </html>
