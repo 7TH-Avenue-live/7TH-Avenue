@@ -2,178 +2,114 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LIVE OBSERVATORY</title>
+  <title>Reserva do Salão de Festas</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #f8f8f8;
+      padding: 20px;
     }
-    header {
-      background-color: #343a40;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      background-color: #e9ecef;
-      padding: 0.5rem;
-    }
-    nav button {
-      background-color: transparent;
-      border: none;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    nav button:hover {
-      text-decoration: underline;
-    }
-    .card {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 12px;
-      max-width: 700px;
-      margin: 2rem auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .hidden {
+    .aba {
       display: none;
     }
-    button.submit-btn {
-      margin-top: 20px;
-      padding: 10px 15px;
-      background-color: #28a745;
-      border: none;
-      border-radius: 6px;
-      color: white;
-      cursor: pointer;
-    }
-    button.submit-btn:hover {
-      background-color: #218838;
-    }
-    input[type="text"], input[type="date"], textarea {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      margin-bottom: 15px;
-    }
-    label {
+    .visivel {
       display: block;
-      margin-bottom: 10px;
+    }
+    .botoes {
+      margin-bottom: 20px;
+    }
+    button {
+      margin-right: 10px;
+      padding: 10px;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Espaço LIVE OBSERVATORY</h1>
-  </header>
+  <h1>Reserva do Salão de Festas</h1>
 
-  <nav>
+  <div class="botoes">
     <button onclick="mostrarAba('checklist')">Checklist</button>
-    <button onclick="mostrarAba('regras')">Regras de Uso</button>
-    <button onclick="mostrarAba('contato')">Contato</button>
-  </nav>
+    <button onclick="mostrarAba('regimento')">Regras de Uso</button>
+    <button onclick="mostrarAba('confirmar')">Confirmar e Enviar</button>
+  </div>
 
-  <!-- ABA CHECKLIST -->
-  <div class="card" id="checklist">
-    <p><em>(Capacidade para 30 pessoas)</em></p>
-    <p>Na qualidade de condômino(a) do <strong>Condomínio 7th Avenue Live & Work</strong>, comprometo-me e responsabilizo-me pelo seguinte:</p>
-    <ol>
-      <li>Utilizar o espaço sem perturbar os demais moradores;</li>
-      <li>Responsabilizar-me por danos ao mobiliário e objetos;</li>
-      <li>Cumprir o Regulamento Interno do condomínio;</li>
-      <li>Declaro que recebi o espaço em plena ordem, salvo exceções abaixo:</li>
-    </ol>
+  <!-- Aba 1: Checklist -->
+  <div id="checklist" class="aba visivel">
+    <h2>Checklist de Itens</h2>
+    <form id="formChecklist">
+      <label><input type="checkbox" name="itens" value="Pratos"> Pratos</label><br>
+      <label><input type="checkbox" name="itens" value="Copos"> Copos</label><br>
+      <label><input type="checkbox" name="itens" value="Talheres"> Talheres</label><br>
+      <label><input type="checkbox" name="itens" value="Mesas"> Mesas</label><br>
+      <label><input type="checkbox" name="itens" value="Cadeiras"> Cadeiras</label><br>
+    </form>
+  </div>
 
-    <label for="excecoesInput">📝 Itens com problemas ou exceções:</label>
-    <textarea id="excecoesInput" rows="4" placeholder="Descreva aqui, se houver..."></textarea>
+  <!-- Aba 2: Regras de Uso -->
+  <div id="regimento" class="aba">
+    <h2>Regimento Interno</h2>
+    <ul>
+      <li>Art. 53 - A Administração se reserva o direito de suspender o uso dos Espaços de Eventos aos moradores e visitantes que desrespeitarem as normas, ou que não apresentem postura adequada. <br>
+      <strong>Parágrafo único:</strong> Fica terminantemente proibido o ingresso nas piscinas de convidados que estiverem participando de reuniões ou festividades nos Espaços de Eventos.</li>
 
+      <li>Art. 55 - É proibido furar paredes, teto, gesso, etc., bem como fixar grampos, pregos, percevejos e similares ou colar adesivos para montagem de arranjos comemorativos.</li>
+
+      <li>Art. 57 - Após o uso, e antes da devolução dos referidos espaços, deverá o usuário retirar todo e qualquer material a eles pertencentes, não ficando o condomínio responsável por nenhum material deixado no ambiente. <br>
+      <strong>Parágrafo único:</strong> Deverá também deixar o lixo devidamente acondicionado e separado, colaborando com a limpeza e higiene do local.</li>
+
+      <li>Art. 58 – O condômino que alugar os Espaços de Eventos deverá fornecer para a portaria a lista de convidados, com 24 horas de antecedência.</li>
+
+      <li>Art. 60 – Fica terminantemente proibida a retirada, transferência, bem como a utilização dos materiais pertencentes aos Espaços de Eventos, tais como pratos, copos, mesas, cadeiras, móveis, equipamentos e utensílios etc., para serem utilizados em Espaço de Eventos diverso ou em qualquer outro local.</li>
+
+      <li>Art. 61 – O horário para utilização do Live Gourmet I, Live Parties I, Live Parties II, Live Observatory, será das 10h00min às 03h00min (três horas da manhã do dia seguinte).<br>
+      <strong>Parágrafo Primeiro:</strong> Quaisquer ruídos produzidos devem cessar a partir das 22h00, sendo permitida a permanência no local até as 03h00, sendo que festividades com aparelhos sonoros não poderão prejudicar o sossego dos condôminos.<br>
+      <strong>Parágrafo Segundo:</strong> Após 00h00min, todas as atividades devem se restringir ao interior dos ambientes.</li>
+
+      <li>Art. 62 – Os Espaços externos no Live Gourmet I e Live Parties I são de uso comum. Espaços anexados como Live Parties II e Live Observatory são de uso exclusivo do locador. O espaço externo ao Live Observatory que dá acesso à luneta é de uso comum.<br>
+      <strong>Parágrafo único:</strong> Live Parties I e II poderão ser integrados, desde que o número de convidados não ultrapasse 110 pessoas.</li>
+
+      <li>Art. 64 – Esses Espaços têm capacidade máxima limitada. O requisitante pagará:<br>
+      - Live Observatory - (máximo de 30 pessoas): 15% do salário mínimo federal.<br>
+      <strong>Parágrafo Primeiro:</strong> A taxa cobre manutenção, água, luz e limpeza.<br>
+      <strong>Parágrafo Segundo:</strong> Crianças acima de 07 anos contam como usuários.<br>
+      <strong>Parágrafo Único:</strong> É proibido fumar em áreas comuns, conforme Lei Municipal 13254/2009.</li>
+
+      <li><strong>Via do condômino</strong></li>
+    </ul>
+  </div>
+
+  <!-- Aba 3: Confirmar e Enviar -->
+  <div id="confirmar" class="aba">
+    <h2>Confirmação</h2>
+    <p>Confirme que você leu e concorda com as regras:</p>
     <label>
-      <input type="checkbox" id="agreeCheckbox"> Li e concordo com as regras
-    </label>
-    <button class="submit-btn" onclick="mostrarFormulario()">Continuar</button>
-
-    <!-- FORMULÁRIO FINAL -->
-    <div class="hidden" id="formulario">
-      <h2>Checklist Final</h2>
-      <form action="https://formsubmit.co/adm7th@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="Checklist - Espaço LIVE OBSERVATORY">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="excecoes" id="excecoesHidden">
-
-        <label>Nome do morador:
-          <input type="text" name="morador" required>
-        </label>
-        <label>Número do APTO:
-          <input type="text" name="apto" required>
-        </label>
-        <label>Data da reserva:
-          <input type="date" name="data" required>
-        </label>
-
-        <label><input type="checkbox" name="Mesas"> Mesas em ordem</label>
-        <label><input type="checkbox" name="Cadeiras"> Cadeiras em ordem</label>
-        <label><input type="checkbox" name="Banheiro"> Banheiros limpos</label>
-        <label><input type="checkbox" name="Piso"> Piso limpo</label>
-        <label><input type="checkbox" name="Lixo"> Lixeiras com saco</label>
-        <label><input type="checkbox" name="Espelhos"> Espelhos limpos</label>
-
-        <button type="submit" class="submit-btn">Enviar</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- ABA REGRAS -->
-  <div class="card hidden" id="regras">
-    <h2>Regras de Uso do Espaço</h2>
-    <ul>
-      <li>Horário permitido: 08h às 22h.</li>
-      <li>Não é permitido som alto.</li>
-      <li>É proibido fumar no interior do espaço.</li>
-      <li>Ao término do uso, o espaço deve ser devolvido limpo.</li>
-      <li>O morador é responsável pelos convidados.</li>
-      <li>Em caso de danos, o morador será responsabilizado.</li>
-    </ul>
-  </div>
-
-  <!-- ABA CONTATO -->
-  <div class="card hidden" id="contato">
-    <h2>Contato</h2>
-    <p>Para dúvidas, reclamações ou sugestões, entre em contato conosco:</p>
-    <ul>
-      <li><strong>Email:</strong> <a href="mailto:adm7th@gmail.com">adm7th@gmail.com</a></li>
-      <li><strong>WhatsApp:</strong> (XX) XXXXX-XXXX</li>
-      <li><strong>Portaria:</strong> Ramal 101</li>
-    </ul>
+      <input type="checkbox" id="aceitaRegras"> Li e aceito as regras de uso do salão de festas.
+    </label><br><br>
+    <label>
+      Seu nome: <input type="text" id="nomeUsuario">
+    </label><br><br>
+    <button onclick="enviarChecklist()">Enviar por e-mail</button>
   </div>
 
   <script>
-    function mostrarAba(abaId) {
-      const abas = ['checklist', 'regras', 'contato'];
-      abas.forEach(id => {
-        document.getElementById(id).classList.add('hidden');
-      });
-      document.getElementById(abaId).classList.remove('hidden');
+    function mostrarAba(id) {
+      document.querySelectorAll('.aba').forEach(aba => aba.classList.remove('visivel'));
+      document.getElementById(id).classList.add('visivel');
     }
 
-    function mostrarFormulario() {
-      const checkbox = document.getElementById('agreeCheckbox');
-      if (checkbox.checked) {
-        const excecoes = document.getElementById('excecoesInput').value;
-        document.getElementById('excecoesHidden').value = excecoes;
-        document.getElementById('formulario').classList.remove('hidden');
-      } else {
-        alert('Você deve aceitar as regras para continuar.');
+    function enviarChecklist() {
+      const aceita = document.getElementById('aceitaRegras').checked;
+      const nome = document.getElementById('nomeUsuario').value.trim();
+      if (!aceita || nome === "") {
+        alert("Você deve aceitar as regras e informar seu nome para continuar.");
+        return;
       }
-    }
 
-    // Mostra a aba "Checklist" por padrão ao carregar a página
-    window.onload = () => mostrarAba('checklist');
+      const itensMarcados = Array.from(document.querySelectorAll('input[name="itens"]:checked')).map(el => el.value);
+      const corpoEmail = `Nome do usuário: ${nome}\n\nChecklist de Itens Marcados:\n${itensMarcados.join('\n')}\n\nRegras foram aceitas: SIM`;
+
+      window.location.href = `mailto:seuemail@exemplo.com?subject=Checklist do Salão de Festas&body=${encodeURIComponent(corpoEmail)}`;
+    }
   </script>
 
 </body>
