@@ -2,167 +2,83 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LIVE OBSERVATORY</title>
+  <title>Reserva do Salão de Festas</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #f8f8f8;
+      padding: 20px;
     }
-    header {
-      background-color: #343a40;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      background-color: #e9ecef;
-      padding: 0.5rem;
-    }
-    nav button {
-      background-color: transparent;
-      border: none;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    nav button:hover {
-      text-decoration: underline;
-    }
-    .card {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 12px;
-      max-width: 700px;
-      margin: 2rem auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .hidden {
+    .aba {
       display: none;
     }
-    button.submit-btn {
-      margin-top: 20px;
-      padding: 10px 15px;
-      background-color: #28a745;
-      border: none;
-      border-radius: 6px;
-      color: white;
-      cursor: pointer;
-    }
-    button.submit-btn:hover {
-      background-color: #218838;
-    }
-    input[type="text"], input[type="date"], textarea {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      margin-bottom: 15px;
-    }
-    label {
+    .visivel {
       display: block;
-      margin-bottom: 10px;
+    }
+    .botoes {
+      margin-bottom: 20px;
+    }
+    button {
+      margin-right: 10px;
+      padding: 10px;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Espaço LIVE OBSERVATORY</h1>
-  </header>
+  <h1>Reserva do Salão de Festas</h1>
 
-  <nav>
+  <div class="botoes">
     <button onclick="mostrarAba('checklist')">Checklist</button>
-    <button onclick="mostrarAba('regras')">Regras de Uso</button>
-    <button onclick="mostrarAba('contato')">Contato</button>
-  </nav>
-
-  <!-- ABA CHECKLIST -->
-  <div class="card" id="checklist">
-    <p><em>(Capacidade para 30 pessoas)</em></p>
-    <p>Na qualidade de condômino(a) do <strong>Condomínio 7th Avenue Live & Work</strong>, comprometo-me e responsabilizo-me pelo seguinte:</p>
-    <ol>
-      <li>Utilizar o espaço sem perturbar os demais moradores;</li>
-      <li>Responsabilizar-me por danos ao mobiliário e objetos;</li>
-      <li>Cumprir o Regulamento Interno do condomínio;</li>
-      <li>Declaro que recebi o espaço em plena ordem, salvo exceções abaixo:</li>
-    </ol>
-
-    <label for="excecoesInput">📝 Itens com problemas ou exceções:</label>
-    <textarea id="excecoesInput" rows="4" placeholder="Descreva aqui, se houver..."></textarea>
-
-    <label>
-      <input type="checkbox" id="agreeCheckbox"> Li e concordo com as regras
-    </label>
-    <button class="submit-btn" onclick="mostrarFormulario()">Continuar</button>
-
-    <!-- FORMULÁRIO FINAL -->
-    <div class="hidden" id="formulario">
-      <h2>Checklist Final</h2>
-      <form action="https://formsubmit.co/adm7th@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="Checklist - Espaço LIVE OBSERVATORY">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="excecoes" id="excecoesHidden">
-
-        <label>Nome do morador:
-          <input type="text" name="morador" required>
-        </label>
-        <label>Número do APTO:
-          <input type="text" name="apto" required>
-        </label>
-        <label>Data da reserva:
-          <input type="date" name="data" required>
-        </label>
-
-        <label><input type="checkbox" name="Mesas"> Mesas em ordem</label>
-        <label><input type="checkbox" name="Cadeiras"> Cadeiras em ordem</label>
-        <label><input type="checkbox" name="Banheiro"> Banheiros limpos</label>
-        <label><input type="checkbox" name="Piso"> Piso limpo</label>
-        <label><input type="checkbox" name="Lixo"> Lixeiras com saco</label>
-        <label><input type="checkbox" name="Espelhos"> Espelhos limpos</label>
-
-        <button type="submit" class="submit-btn">Enviar</button>
-      </form>
-    </div>
+    <button onclick="mostrarAba('regras')">Regras</button>
+    <button onclick="mostrarAba('confirmar')">Confirmar e Enviar</button>
   </div>
 
-  <!-- ABA regimento -->
-  <div class="card hidden" id="regimento">
-    <h2>Regimento interno</h2>
+  <!-- Aba 1: Checklist -->
+  <div id="checklist" class="aba visivel">
+    <h2>Checklist de Itens</h2>
+    <form id="formChecklist">
+      <label><input type="checkbox" name="itens" value="Pratos"> Pratos</label><br>
+      <label><input type="checkbox" name="itens" value="Copos"> Copos</label><br>
+      <label><input type="checkbox" name="itens" value="Talheres"> Talheres</label><br>
+      <label><input type="checkbox" name="itens" value="Mesas"> Mesas</label><br>
+      <label><input type="checkbox" name="itens" value="Cadeiras"> Cadeiras</label><br>
+    </form>
+  </div>
+
+  <!-- Aba 2: Regras -->
+  <div id="regras" class="aba">
+    <h2>Regulamento de Uso dos Espaços de Eventos</h2>
     <ul>
       <li>Art. 53 - A Administração se reserva o direito de suspender o uso dos Espaços de Eventos aos moradores e visitantes que desrespeitarem as normas, ou que não apresentem postura adequada. <br>
-      <strong>Parágrafo único:</strong> Fica terminantemente proibido o ingresso nas piscinas de convidados que estiverem participando de reuniões ou festividades nos Espaços de Eventos.</li>
+      Parágrafo único: Fica terminantemente proibido o ingresso nas piscinas de convidados que estiverem participando de reuniões ou festividades nos Espaços de Eventos. </li>
 
       <li>Art. 55 - É proibido furar paredes, teto, gesso, etc., bem como fixar grampos, pregos, percevejos e similares ou colar adesivos para montagem de arranjos comemorativos.</li>
 
-      <li>Art. 57 - Após o uso, e antes da devolução dos referidos espaços, deverá o usuário retirar todo e qualquer material a eles pertencentes, não ficando o condomínio responsável por nenhum material deixado no ambiente. <br>
-      <strong>Parágrafo único:</strong> Deverá também deixar o lixo devidamente acondicionado e separado, colaborando com a limpeza e higiene do local.</li>
+      <li>Art. 57 - Após o uso, e antes da devolução dos referidos espaços, deverá o usuário retirar todo e qualquer material a eles pertencentes não ficando o condomínio responsável por nenhum material deixado no ambiente. <br>
+      Parágrafo único: Deverá também deixar o lixo devidamente acondicionado e separado colaborando com a limpeza e higiene do local. </li>
 
       <li>Art. 58 – O condômino que alugar os Espaços de Eventos deverá fornecer para a portaria a lista de convidados, com 24 horas de antecedência.</li>
 
       <li>Art. 60 – Fica terminantemente proibida a retirada, transferência, bem como a utilização dos materiais pertencentes aos Espaços de Eventos, tais como pratos, copos, mesas, cadeiras, móveis, equipamentos e utensílios etc., para serem utilizados em Espaço de Eventos diverso ou em qualquer outro local.</li>
 
-      <li>Art. 61 – O horário para utilização do Live Gourmet I, Live Parties I, Live Parties II, Live Observatory, será das 10h00min às 03h00min (três horas da manhã do dia seguinte).<br>
-      <strong>Parágrafo Primeiro:</strong> Quaisquer ruídos produzidos devem cessar a partir das 22h00, sendo permitida a permanência no local até as 03h00, sendo que festividades com aparelhos sonoros não poderão prejudicar o sossego dos condôminos.<br>
-      <strong>Parágrafo Segundo:</strong> Após 00h00min, todas as atividades devem se restringir ao interior dos ambientes.</li>
+      <li>Art. 61 – O horário para utilização do Live Gourmet I, Live Parties I, Live Parties II, Live Observatory, será das 10h00min às 03h00min (três horas da manhã do dia seguinte). <br>
+      Parágrafo Primeiro: Quaisquer ruídos produzidos devem cessar a partir das 22h00, sendo permitida a permanência no local até as 03h00 (três horas da manhã), sendo que festividades as quais sejam utilizados aparelhos sonoros os volumes dos mesmos não poderão prejudicar o sossego dos condôminos. <br>
+      Parágrafo Segundo: Após as 00h00min (meia-noite), todas as atividades nestes Espaços de Eventos devem se restringir ao interior dos ambientes, visando reduzir o ruído na área comum do Condomínio. </li>
 
-      <li>Art. 62 – Os Espaços externos no Live Gourmet I e Live Parties I são de uso comum. Espaços anexados como Live Parties II e Live Observatory são de uso exclusivo do locador. O espaço externo ao Live Observatory que dá acesso à luneta é de uso comum.<br>
-      <strong>Parágrafo único:</strong> Live Parties I e II poderão ser integrados, desde que o número de convidados não ultrapasse 110 pessoas.</li>
+      <li>Art. 62 – Os Espaços externos no Live Gourmet I e Live Parties I, não serão de exclusividade do condômino locador dos espaços mencionados, a área externa é de uso comum a todos os condôminos. Espaços anexados como no caso do Live Parties II e Live Observatory serão de uso exclusivo do condômino locador do espaço conforme sua destinação. O Espaço externo ao Live Observatory que dá acesso a luneta externa ao espaço de evento é de uso comum a todos os condôminos. <br>
+      Parágrafo único: Live Parties I e Live Parties II- Poderão ser integrados e locados esses dois espaços para um único condômino desde que a número de convidados não ultrapasse a capacidade do espaço que é de 110 (cento e dez pessoas) e atenda as especificações que </li>
 
-      <li>Art. 64 – Esses Espaços têm capacidade máxima limitada. O requisitante pagará:<br>
-      - Live Observatory - (máximo de 30 pessoas): 15% do salário mínimo federal.<br>
-      <strong>Parágrafo Primeiro:</strong> A taxa cobre manutenção, água, luz e limpeza.<br>
-      <strong>Parágrafo Segundo:</strong> Crianças acima de 07 anos contam como usuários.<br>
-      <strong>Parágrafo Único:</strong> É proibido fumar em áreas comuns, conforme Lei Municipal 13254/2009.</li>
+      <li>Art. 64 – Esses Espaços de Eventos tem capacidade máxima de pessoas limitada e para usa-los o requisitante pagará as taxas descritas abaixo: <br>
+      - Live Observatory - (máximo de 30 pessoas):15% do salário mínimo federal. <br>
+      Parágrafo Primeiro: Essas taxas de utilização serão cobradas para a manutenção, reserva do local e para cobrir despesas decorrentes do consumo de luz, água e limpeza das louças e espaço em geral. <br>
+      Parágrafo Segundo: Crianças acima de 07 (sete) anos contam como usuários. <br>
+      Parágrafo Único: É expressamente proibido fumar, conduzir aceso qualquer tipo de cigarro, cigarrilhas, cachimbo, charutos ou assemelhados, dentro das áreas comuns do Condomínio, sendo esta infração considerada restrição grave ao direito de uso dos demais condôminos. Aplica-se o disposto neste parágrafo, aos recintos de uso coletivo, total ou parcialmente fechados em qualquer dos seus lados por parede, divisória, teto ou telhado, ainda que provisórios, onde haja permanência ou circulação de pessoas, conforme estabelecido na lei municipal 13254/2009. Ainda de acordo com a legislação citada, considera-se ambiente ou recinto coletivo fechado, todo espaço coberto por um teto ou fechado entre uma ou mais paredes ou muros, independente do material utilizado para o teto, paredes e muro, bem como se a estrutura seja permanente ou provisória. </li>
 
-      <li><strong>Via do condômino</strong></li>
-	  
+      <li>Via do condômino</li>
     </ul>
   </div>
 
-  <!-- ABA CONTATO -->
+   <!-- ABA CONTATO -->
   <div class="card hidden" id="contato">
     <h2>Contato</h2>
     <p>Para dúvidas, reclamações ou sugestões, entre em contato conosco:</p>
